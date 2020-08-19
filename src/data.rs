@@ -104,6 +104,11 @@ impl Display for Hypothesis {
         Value::ANY => '?'
       };
       output.push(character);
+      if i < self.len - 1 {
+        output.push_str(", ");
+      } else {
+        output.push(']');
+      }
     }
     write!(f, "{}", output)
   }
