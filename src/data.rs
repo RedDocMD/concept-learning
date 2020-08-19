@@ -1,4 +1,5 @@
 use std::cmp::Ordering;
+use std::fmt::{Display, Formatter, Result};
 
 pub enum Value {
   NONE,
@@ -16,6 +17,12 @@ pub struct Data {
   pub len: usize,
   pub values: Vec<bool>,
   pub result: bool,
+}
+
+impl Data {
+  pub fn new() -> Self {
+    Data { len: 0, values: Vec::new(), result: false }
+  }
 }
 
 impl PartialEq for Value {
@@ -83,5 +90,21 @@ impl Hypothesis {
       }
     }
     return Some(true);
+  }
+}
+
+impl Display for Hypothesis {
+  fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+    let mut output = String::from("[");
+    for i in 0..self.len {
+      let character = match self.values[i] {
+        Value::NONE => '\u{3D5}',
+        Value::TRUE => 'T',
+        Value::FALSE => 'F',
+        Value::ANY => '?'
+      };
+      output.push(character);
+    }
+    write!(f, "{}", output)
   }
 }
