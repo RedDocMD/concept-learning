@@ -1,5 +1,5 @@
 [package]
-name = "candidate_elimination"
+name = "concept_learning"
 version = "0.1.0"
 authors = ["Deep Majumder <deep.majumder2019@gmail.com>"]
 edition = "2018"
