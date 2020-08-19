@@ -66,14 +66,16 @@ impl Hypothesis {
     }
     Hypothesis { len, values }
   }
-}
 
-impl PartialOrd for Hypothesis {
-  fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
-    // None > TRUE == FALSE > ANY
+  pub fn is_more_general_or_equal(&self, other: &Self) -> Option<bool> {
+    if self.len != other.len {
+      return None;
+    }
+    for i in 0..self.len {
+      if self.values[i] < other.values[i] {
+        return Some(false);
+      }
+    }
+    return Some(true);
   }
-}
-
-impl PartialEq for Hypothesis {
-  fn eq(&self, other: &Self) -> bool {}
 }
