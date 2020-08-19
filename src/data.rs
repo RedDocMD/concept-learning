@@ -8,8 +8,14 @@ pub enum Value {
 }
 
 pub struct Hypothesis {
-  len: usize,
-  values: Vec<Value>,
+  pub len: usize,
+  pub values: Vec<Value>,
+}
+
+pub struct Data {
+  pub len: usize,
+  pub values: Vec<bool>,
+  pub result: bool,
 }
 
 impl PartialEq for Value {
